@@ -2,6 +2,7 @@
 
 import sys
 import random
+from unidecode import unidecode
 
 class Hangman:
     def __init__(self, wfile):
@@ -19,8 +20,9 @@ class Hangman:
                 string = string.rstrip()
                 words.append(string.lower())
         self.__word = words[random.randint(0,len(words) - 1)]
+        self.__word = unidecode(self.__word)
         self.__puzzle = "-"*len(self.__word)
-        self.guess = ""
+        self.guess = "ěščřžýáíéúů"
 
     def isIn(self, guess):
         """
@@ -63,13 +65,13 @@ if __name__ == "__main__":
         print("Číslo prosím!")
         sys.exit(1)
     print("Hádané slovo má {} písmen.".format(len(hangman.getPuzzle)))
-    print("Vše je malým písmem.")
+    print("Vše je malým písmem a bez interpunkce")
     for i in range(count):
         print("Pokus číslo {}.".format(i + 1))
         c = input("Zadejte odhadované písmeno. ")
         c = str(c)
         while 1 < len(c) or c in hangman.guess:
-            c = input("Pouze jeden znak prosím! || Už jste toto písmeno použil: ")
+            c = input("Pouze jeden znak prosím! ||\nUž jste toto písmeno použil||\nObsahuje diakritiku: ")
         if hangman.isIn(c):
             print("Správně, ještě {} pokusů".format(count - i - 1))
             print(hangman.updatePuzzle(c)) 
