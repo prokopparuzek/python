@@ -49,28 +49,35 @@ class Hangman:
     def getWord(self):
         return self.__word
 
-hangman = Hangman(sys.argv[1])
-count = input("Kolik chcete pokusů? ")
-try:
-    count = int(count)
-except ValueError:
-    print("Číslo prosím!")
-    sys.exit(1)
-print("Hádané slovo má {} písmen.".format(len(hangman.getPuzzle)))
-print("Vše je malým písmem.")
-for i in range(count):
-    print("Pokus číslo {}.".format(i + 1))
-    c = input("Zadejte odhadované písmeno. ")
-    c = str(c)
-    while 1 < len(c):
-        c = input("Pouze jeden znak prosím!: ")
-    if hangman.isIn(c):
-        print("Správně, ještě {} pokusů".format(count - i - 1))
-        print(hangman.updatePuzzle(c)) 
-    else:
-        print("Špatně, ještě {} pokusů".format(count - i - 1))
-        print(hangman.getPuzzle)
-    if "-" not in hangman.getPuzzle:
-        print("Vyhral jsi!")
-        sys.exit(0)
-print("Prohrál jsi.\nHádané slovo bylo: {}".format(hangman.getWord))
+if __name__ == "__main__":
+    guessed = ""
+    try:
+        hangman = Hangman(sys.argv[1])
+    except IndexError:
+        print("Zadejte soubor slov, jako argument")
+        sys.exit(2)
+    count = input("Kolik chcete pokusů? ")
+    try:
+        count = int(count)
+    except ValueError:
+        print("Číslo prosím!")
+        sys.exit(1)
+    print("Hádané slovo má {} písmen.".format(len(hangman.getPuzzle)))
+    print("Vše je malým písmem.")
+    for i in range(count):
+        print("Pokus číslo {}.".format(i + 1))
+        c = input("Zadejte odhadované písmeno. ")
+        c = str(c)
+        while 1 < len(c) or c in guessed:
+            c = input("Pouze jeden znak prosím! || Už jste toto písmeno použil: ")
+        guessed += c
+        if hangman.isIn(c):
+            print("Správně, ještě {} pokusů".format(count - i - 1))
+            print(hangman.updatePuzzle(c)) 
+        else:
+            print("Špatně, ještě {} pokusů".format(count - i - 1))
+            print(hangman.getPuzzle)
+        if "-" not in hangman.getPuzzle:
+            print("Vyhral jsi!")
+            sys.exit(0)
+    print("Prohrál jsi.\nHádané slovo bylo: {}".format(hangman.getWord))
