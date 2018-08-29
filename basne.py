@@ -36,12 +36,18 @@ class Poem:
         """
         line = ""
         for _ in range(countW - 1):
-            line += self.words[random.randint(0, len(self.words) - 1)].lower()
+            line += self.words[random.randint(0, len(self.words) - 1)]
             line += " "
         line += self.rhymes[random.randint(0, len(self.words) - 1)].lower()
         line += "."
-        return line.capitalize()
+        line = line[0].upper() + line[1:]
+        return line
 
     def generatePoem(self, countL):
+        """
+        Generuje báseň o zadaném počtu veršů.
+        """
+        poem = ""
         for _ in range(countL):
-            print(self.getLine(random.randint(4,6)))
+           poem += self.getLine(random.randint(4,6)) + "\n"
+        return poem
