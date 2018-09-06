@@ -51,3 +51,22 @@ class Poem:
         for _ in range(countL):
            poem += self.getLine(random.randint(4,6)) + "\n"
         return poem
+
+if __name__ == "__main__":
+    while True:
+        x = input("Kolik chcete veršů? ")
+        try:
+            x = int(x)
+        except ValueError:
+            print("Číslo prosím!")
+            sys.exit(1)
+        poem = Poem(sys.argv[1],sys.argv[2])
+        print(poem.generatePoem(x).rstrip())
+        check = input("Chcete další báseň? [a/n] ")
+        if check == "a":
+            continue
+        elif check == "n":
+            break
+        else:
+            print("Odpověd je 'a', nebo 'n'.\nNe {}.".format(check))
+            sys.exit(2)
