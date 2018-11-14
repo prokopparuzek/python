@@ -67,12 +67,13 @@ if __name__ == "__main__":
     print("Hádané slovo má {} písmen.".format(len(hangman.getPuzzle)))
     print("Vše je malým písmem a bez interpunkce")
     for i in range(count):
-        print(hangman.getPuzzle)
+        print("{}".format(hangman.getPuzzle));
         print("Pokus číslo {}.".format(i + 1))
         c = input("Zadejte odhadované písmeno. ")
         c = str(c)
         while 1 < len(c) or c in hangman.guess:
             c = input("Pouze jeden znak prosím! ||\nUž jste toto písmeno použil||\nObsahuje diakritiku: ")
+        hangman.updatePuzzle(c)
         if hangman.isIn(c):
             print("Správně, ještě {} pokusů".format(count - i - 1))
         else:
