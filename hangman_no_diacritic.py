@@ -73,6 +73,7 @@ if __name__ == "__main__":
         c = str(c)
         while 1 < len(c) or c in hangman.guess:
             c = input("Pouze jeden znak prosím! ||\nUž jste toto písmeno použil||\nObsahuje diakritiku: ")
+        hangman.updatePuzzle(c)
         if hangman.isIn(c):
             print("Správně, ještě {} pokusů".format(count - i - 1))
             hangman.updatePuzzle(c)
