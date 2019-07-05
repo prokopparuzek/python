@@ -1,5 +1,4 @@
 __pycache__
-czech.txt
-rym.txt
-Rym.dic
-CZ.txt
+slovniky/*
+!slovniky/wordlist.tar.xz
+.vscode/
