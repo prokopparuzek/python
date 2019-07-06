@@ -77,6 +77,7 @@ if __name__ == "__main__":
             print(hangman.getPuzzle)
         else:
             print("Špatně, ještě {} pokusů".format(count - i - 1))
+            print(hangman.getPuzzle)
         if "-" not in hangman.getPuzzle:
             print("Vyhral jsi!")
             sys.exit(0)
