@@ -80,13 +80,3 @@ if __name__ == "__main__":
             break
         else:
             raise ValueError("Chybný stav!")
-
-
-def getAnswer(string, var):
-    while True:
-        ans = input(string)
-        if ans in var:
-            return ans
-        else:
-            print("Odpovedi jsou {}\nNe {}.".format(var, ans))
-            continue
