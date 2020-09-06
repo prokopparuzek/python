@@ -2,3 +2,6 @@ __pycache__
 slovniky/*
 !slovniky/wordlist.tar.xz
 .vscode/
+serm/news.md5
+serm/status.md5
+serm/pass.txt
