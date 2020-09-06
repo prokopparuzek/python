@@ -5,7 +5,7 @@ import hashlib
 import urllib.request
 
 # pošli na mail
-def mail():
+def mail(telo):
     with open("pass.txt", "r", encoding="utf-8") as text:
         udaje = list(text)
     udaje = [s.rstrip() for s in udaje]
@@ -66,4 +66,4 @@ with open("status.md5", "w") as news:
     news.write(h)
 
 if send_mail:
-    mail()
+    mail(telo)
