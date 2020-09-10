@@ -11,7 +11,7 @@ def mail(telo):
     udaje = [s.rstrip() for s in udaje]
     jmeno, heslo = tuple(udaje)    # uloží údaje do samostatných proměných
     komu = "prokop.paruzek@paruzkovi.cz"
-    telo += "Důležité odkazy: http://www.czechfencing.cz/portal/news a http://www.czechfencing.cz/portal/members/detail/2477\nTvůj bot"
+    telo += "Důležité odkazy: https://www.czechfencing.cz/portal/news a https://www.czechfencing.cz/portal/members/detail/2477\nTvůj bot"
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as m:
         m.ehlo()
         m.login(jmeno, heslo)
@@ -26,7 +26,7 @@ send_mail = False
 # Novinky
 try:
     with open("news.md5") as news:
-        s = urllib.request.urlopen("http://www.czechfencing.cz/portal/news")
+        s = urllib.request.urlopen("https://www.czechfencing.cz/portal/news")
         m = hashlib.md5()
         m.update(s.read())
         h = m.hexdigest()
@@ -35,7 +35,7 @@ try:
             telo += "Změna v novinkách.\n"
             send_mail = True
 except FileNotFoundError:
-    s = urllib.request.urlopen("http://www.czechfencing.cz/portal/news")
+    s = urllib.request.urlopen("https://www.czechfencing.cz/portal/news")
     m = hashlib.md5()
     m.update(s.read())
     h = m.hexdigest()
@@ -47,7 +47,7 @@ with open("news.md5", "w") as news:
 # Status
 try:
     with open("status.md5") as status:
-        s = urllib.request.urlopen("http://www.czechfencing.cz/portal/members/detail/2477")
+        s = urllib.request.urlopen("https://www.czechfencing.cz/portal/members/detail/2477")
         m = hashlib.md5()
         m.update(s.read())
         h = m.hexdigest()
@@ -56,7 +56,7 @@ try:
             telo += "Změna ve statutu.\n"
             send_mail = True
 except FileNotFoundError:
-    s = urllib.request.urlopen("http://www.czechfencing.cz/portal/members/detail/2477")
+    s = urllib.request.urlopen("https://www.czechfencing.cz/portal/members/detail/2477")
     m = hashlib.md5()
     m.update(s.read())
     h = m.hexdigest()
